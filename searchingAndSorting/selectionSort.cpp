@@ -1,15 +1,13 @@
-class Solution {
-public:
-    vector<int> sortArray(vector<int>& nums) {
-        for(int i=0; i<nums.size()-1; i++){
+void selectionSort(vector<int>& arr, int n)
+{   
+    // Write your code here.
+    for(int i=0; i<n-1; i++){
             int minIndex = i;
-            for(int j=i+1; j<nums.size(); j++){
-                if(nums[minIndex] > nums[j]){
+            for(int j=i+1; j<n; j++){
+				if(arr[minIndex] > arr[j]){
                     minIndex = j;
                 }
             }
-            swap(nums[minIndex], nums[i]);
+            swap(arr[minIndex], arr[i]);
         }
-        return nums;
-    }
-};
+}
