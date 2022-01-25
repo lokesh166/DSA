@@ -57,3 +57,32 @@ Node* reverseLinkedList(Node *head)
 
 
 
+
+void reverse(Node* &head, Node* currptr, Node* preptr){
+
+//     base case
+    if(currptr == NULL){
+        head = preptr;
+        return;
+    }
+    Node* nextptr = currptr -> next;
+    reverse(head, nextptr, currptr);
+    currptr -> next = preptr;
+    
+}
+
+
+
+Node* reverseLinkedList(Node *head)
+{
+    Node* preptr = NULL;
+    Node* currptr = head;
+    
+    reverse(head, currptr, preptr);
+    return head;
+}
+
+
+
+
+
