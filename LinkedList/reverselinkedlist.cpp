@@ -86,3 +86,27 @@ Node* reverseLinkedList(Node *head)
 
 
 
+
+
+
+// apporace 3
+
+
+
+Node* reverse(Node* &head){
+    
+    if(head == NULL || head -> next == NULL){
+        return head;
+    }
+    Node* newhead = reverse(head -> next);
+    head -> next -> next = head;
+    head -> next = NULL;
+    return newhead;
+}
+
+Node* reverseLinkedList(Node *head)
+{
+   
+    return reverse(head);
+}
+
