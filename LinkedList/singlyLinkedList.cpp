@@ -153,3 +153,172 @@ int main(){
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+
+    // constructor
+    Node(int data){
+        this -> data = data;
+        this -> next = NULL;
+    }
+};
+
+// insert at head
+void insertAtHead(Node* &head, int data){
+    // new node create
+    Node* n = new Node(data);
+    n -> next = head;
+    head = n;
+}
+
+// insert at tail
+void insertAtTail(Node* &head, int data){
+    Node* n = new Node(data);
+
+    if(head == NULL){
+        head = n;
+        return;
+    }
+    Node* temp = head;
+    while(temp -> next != NULL){
+        temp = temp -> next;
+    }
+    temp -> next = n;
+}
+
+// linear search in the linked list
+bool linearSearch(Node* head, int key){
+    Node* temp = head;
+    while(temp != NULL){
+        if(temp -> data == key){
+            return true;
+        }
+        temp = temp -> next;
+    }
+    return false;
+}
+
+// delete at head
+void deleteAtHead(Node* &head){
+    Node* todelete = head;
+    head = head -> next;
+    delete todelete;
+}
+
+
+// delate a node at tail
+void deleteAtTail(Node* &head, int val){
+    if(head == NULL) return;
+
+    if(head -> next == NULL){
+        deleteAtHead(head);
+        return;
+    }
+
+    Node* temp = head;
+    while(temp -> next -> data != val && temp != NULL){
+        temp = temp -> next;
+    }
+    Node* todelete = temp -> next;
+    temp -> next = temp -> next -> next;
+    delete todelete;
+    
+}
+
+
+
+// display function
+void print(Node* head){
+    Node* temp = head;
+
+    while(temp != NULL){
+        cout << temp -> data <<  " ";
+        temp = temp -> next;
+    }
+    cout << endl;
+}
+
+
+int main(){
+
+    Node* head = new Node(10);
+    print(head);
+    insertAtHead(head, 20);
+    print(head);
+    insertAtTail(head, 30);
+    insertAtTail(head, 40);
+    insertAtTail(head, 50);
+    print(head);
+
+    
+    cout << linearSearch(head, 50) << endl; 
+
+    deleteAtHead(head);
+    print(head);
+    deleteAtTail(head, 60);
+    print(head);
+    
+    
+    
+    return 0;
+}
