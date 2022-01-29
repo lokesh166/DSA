@@ -72,3 +72,52 @@ void removeDuplicates(Node* &head){
        
    } 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// optimize way using mapping
+
+
+void removeduplicatesUsingMap(Node* &head){
+    Node* temp = head;
+    Node* pre = head;
+    map<int, bool> visited;
+
+    while(temp != NULL){
+        
+        if(visited[temp->data] == true){
+            Node* todelete = pre -> next;
+            pre -> next = pre -> next -> next;
+            temp = temp -> next;
+            delete todelete;
+           
+            
+
+        }else{
+            visited[temp -> data] = true;
+         cout << "hiii";
+            pre = temp;
+        temp = temp -> next;
+        }
+    }
+}
