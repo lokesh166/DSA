@@ -49,3 +49,64 @@ public:
         }
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution{
+  public:
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        if(head == NULL || head -> next == NULL){
+            return true;
+        }
+        vector<int> arr;
+        Node* temp = head;
+        
+        while(temp != NULL){
+            int val = temp -> data;
+            arr.push_back(val);
+            temp = temp -> next;
+        }
+        
+        int n = arr.size();
+        int e = n-1;
+        int s = 0;
+        while(s<=e){
+            if(arr[s] != arr[e]){
+                return false;
+            }else{
+                s++;
+                e--;
+            }
+        }
+        return true;
+        
+    }
+};
+
+
+
+
