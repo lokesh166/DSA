@@ -56,3 +56,67 @@ Node* sortList(Node *head)
     }
     return head;
 }
+
+
+
+// apporace 2 without change the node data;
+
+
+
+/********************************
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+********************************/
+
+Node* sortList(Node *head)
+{
+    Node* dummyZero = new Node(-1);
+    Node* dummyOne = new Node(-1);
+    Node* dummyTwo = new Node(-1);
+    
+    Node* temp = head;
+    Node* tempZero = dummyZero;
+    Node* tempOne = dummyOne;
+    Node* tempTwo = dummyTwo;
+    
+    
+    while(temp != NULL){
+        int val = temp -> data;
+        if(val == 0){
+            tempZero -> next = temp;
+            tempZero = tempZero -> next;
+        }else if(val == 1){
+            tempOne -> next = temp;
+            tempOne = tempOne -> next;
+        }else if(val == 2){
+            tempTwo -> next = temp;
+            tempTwo = tempTwo -> next;
+        }
+        temp = temp -> next;
+    }
+    
+    
+    tempZero -> next = dummyOne -> next;
+    tempOne -> next = dummyTwo -> next;
+    tempTwo -> next = NULL;
+    
+    head = dummyZero -> next;
+    
+    
+    delete dummyZero;
+    delete dummyOne;
+    delete dummyTwo;
+     
+    return head;
+}
+
