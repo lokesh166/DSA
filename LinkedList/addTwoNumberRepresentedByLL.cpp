@@ -104,3 +104,94 @@ struct Node* add(struct Node* first, struct Node* second){
 
 
 // code optimized
+
+class Solution
+{
+    
+    private:
+    Node* reverse(Node* &head){
+        Node* pre = NULL;
+        Node* curr = head;
+        Node* next = NULL;
+        
+        while(curr != NULL){
+            next = curr -> next;
+            curr -> next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+    
+    void insertAtTail(struct Node* &head, struct Node* &tail, int val){
+        Node* temp = new Node(val);
+        
+        if(head == NULL){
+            head = temp;
+            tail = temp;
+            return;
+        }else{
+            tail -> next = temp;
+            tail = temp;
+        }
+    }
+
+struct Node* add(struct Node* first, struct Node* second){
+    int carry = 0;
+    
+    Node* oneHead = NULL;
+    Node* oneTail = NULL;
+    
+    while(first != NULL || second != NULL || carry != NULL){
+        
+        int val1 = 0;
+        if(first != NULL){
+            val1 = first -> data;
+        }
+        
+         int val2 = 0;
+        if(second != NULL){
+            val2 = second -> data;
+        }
+        
+        int sum = carry + val1 + val2;
+        
+        int digit = sum % 10;
+        
+        insertAtTail(oneHead, oneTail, digit);
+        
+        carry = sum / 10;
+        
+        if(first != NULL){
+            first = first -> next;
+        }
+        
+        if(second != NULL){
+            second = second -> next;
+        }
+        
+        
+    }
+    
+    
+    return oneHead;
+}
+    
+    public:
+    //Function to add two numbers represented by linked list.
+    struct Node* addTwoLists(struct Node* first, struct Node* second)
+    {
+        // step 1 to reverse the input LL
+       first = reverse(first);
+       second = reverse(second);
+       
+    //   step second to add the val
+    Node* ans = add(first, second);
+    
+    ans = reverse(ans);
+    
+    return ans;
+       
+       
+    }
+};
