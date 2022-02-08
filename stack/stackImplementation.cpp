@@ -59,3 +59,100 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// stack using linked list
+
+#include<iostream>
+using namespace std;
+
+class Node {
+
+public:
+    int data;
+    Node* next;
+    
+};
+Node* top = NULL;
+
+void push(int data){
+    Node* temp = new Node();
+
+    if(!temp){
+        cout << "stack overFlow" << endl;
+        return;
+    }
+
+    temp -> data = data;
+    temp -> next = top;
+    top = temp;
+}
+
+void pop(){
+
+    if(top == NULL){
+        cout << "stack is empty " << endl;
+        return;
+    }else{
+        Node* todelete = top;
+        top = top -> next;
+        delete todelete;
+    }
+}
+
+int peak(){
+    if(top == NULL){
+        return -1;
+    }
+    else{
+        return top -> data;
+    }
+}
+
+bool isEmpty(){
+    return top == NULL;
+}
+
+int main(){
+
+   
+    
+    push(2500);
+    push(2);
+    pop();
+    
+
+    
+
+    
+
+
+    
+
+    return 0;
+}
