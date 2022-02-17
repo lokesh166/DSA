@@ -17,6 +17,10 @@ public:
     }
 };
 
+
+// recursive method
+
+
 node* builtTree(node* root){
     cout << "enter the data " << endl;
     int data;
@@ -40,40 +44,43 @@ node* builtTree(node* root){
 
 }
 
-void levelOrderTraversal(node* root){
-    if(root == NULL){
-        cout << " NULL";
-    }
 
+// iterative method
+
+
+void builtFromLevelOrder(node* &root){
     queue<node*> q;
+    cout << "enter the data for root" << endl;
+    int data;
+    cin >> data;
+    root = new node(data);
     q.push(root);
-    q.push(NULL);
 
     while(!q.empty()){
         node* temp = q.front();
         q.pop();
 
-        if(temp == NULL){
-            cout << endl;
-            if(!q.empty()){
-                q.push(NULL);
-            }
-        }else{
+        cout << "enter the data for left node  " << temp -> data << endl;
+        int leftdata;
+        cin >> leftdata;
 
-            cout << temp -> data << " ";
-            
+        if(leftdata != -1){
+            temp -> left = new node(leftdata);
+            q.push(temp -> left);
+        }
 
-            if(temp -> left){
-                q.push(temp -> left);
-            }
+        cout << "enter the data for right node  " << temp -> data << endl;
+        int rightdata;
+        cin >> rightdata;
 
-            if(temp -> right){
-                q.push(temp -> right);
-            }
-
+        if(rightdata != -1){
+            temp -> right = new node(rightdata);
+            q.push(temp -> right);
         }
     }
 }
+
+
 
 
 int main(){
