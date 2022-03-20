@@ -38,6 +38,30 @@ Node* floyedCycle(Node* head){
     return NULL;
 }
 
+
+bool hasCycle(ListNode *head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(fast != NULL && fast->next != NULL){
+            fast = fast->next->next;
+            slow = slow->next;
+            
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
 Node* findStartingNode(Node* head){
     if(head == NULL){
         return head;
