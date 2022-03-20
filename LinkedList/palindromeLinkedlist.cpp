@@ -1,3 +1,9 @@
+
+
+// approace 2
+
+
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -67,7 +73,7 @@ public:
 
 
 
-
+// approace 1
 
 
 
