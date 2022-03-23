@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+
+
+// output
+
+/*
+
+5
+1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15
+
+*/
+
+
+int main(){
+
+    int n;
+    cin >> n;
+
+    
+    int i=1;
+    int count = 1;
+    while(i<=n){
+        int j=0;
+        while(j<i){
+            cout << count << ' ';
+            j++;
+            count++;
+        }
+        cout << endl;
+        i++;
+    }
+
+    return 0;
+}
