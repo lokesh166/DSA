@@ -127,14 +127,108 @@ public:
 
 
 // postorder traversal recursive method
-void postOrder(node* root){
-    // base case
-    if(root == NULL){
-        return ;
+class Solution {
+public:
+    
+    void postOrder(TreeNode* root, vector<int> &ans)
+    {
+        if(root == NULL) return ;
+        
+        postOrder(root->left, ans);
+        postOrder(root->right, ans);
+        ans.push_back(root->val);
+        
     }
+    
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        
+        postOrder(root, ans);
+        
+        return ans;
+    }
+};
 
-    postOrder(root->left);
-    postOrder(root->right);
-    cout << root->data << " ";
 
-}
+// postOrder traversal two stack used
+
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        
+        if(root == NULL) return ans;
+        
+        stack<TreeNode*> st1;
+        
+        TreeNode* current = root;
+        while(current != NULL || !st1.empty())
+        {
+            if(current != NULL)
+            {
+                st1.push(current);
+                current = current->left;
+            }
+            else
+            {
+                TreeNode* temp = st1.top()->right;
+                if(temp == NULL)
+                {
+                    temp = st1.top();
+                    st1.pop();
+                    ans.push_back(temp->val);
+                    
+                    while(!st1.empty() && temp == st1.top()->right)
+                    {
+                        temp = st1.top();
+                        st1.pop();
+                        ans.push_back(temp->val);
+                    }
+                }
+                else{
+                    current = temp;
+                }
+            }
+            
+        }
+        return ans;
+    }
+};
+
+
+// post order traversal only one stack used
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        
+        if(root == NULL) return ans;
+        stack<TreeNode*> st;
+        
+        TreeNode* current = root;
+        while(current != NULL || !st.empty()){
+            if(current != NULL){
+                st.push(current);
+                current = current->left;
+            }else{
+                TreeNode* temp = st.top()->right;
+                if(temp == NULL){
+                    temp = st.top();
+                    ans.push_back(temp->val);
+                    st.pop();
+                    
+                    while(!st.empty() && temp == st.top()->right){
+                        temp = st.top();
+                        ans.push_back(temp->val);
+                        st.pop();
+                    }
+                }else{
+                    current = temp;
+                }
+            }
+        }
+        return ans;
+    }
+};
