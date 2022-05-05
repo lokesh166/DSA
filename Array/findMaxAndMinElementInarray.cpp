@@ -21,3 +21,32 @@ long long int minEle = INT_MAX;
     p.second = maxEle;
     
     return p;
+
+
+
+
+
+
+pair<long long, long long> getMinMax(long long a[], int n) {
+    long long int mini = INT_MAX;
+    long long int maxi = INT_MIN;
+    
+    pair<long long, long long> p;
+    
+    int i = 0;
+    while(i < n) {
+        if(a[i] < mini) {
+            mini = a[i];
+        }
+        if(a[i] > maxi) {
+            maxi = a[i];
+        }
+        i++;
+    }
+    
+    p.first = mini;
+    p.second = maxi;
+    
+    return p;
+    
+}
