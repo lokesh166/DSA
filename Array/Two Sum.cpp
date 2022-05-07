@@ -44,3 +44,54 @@ public:
 
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+         map<int, vector<int>>mp;
+        vector<int> ans;
+        for(int i = 0; i < nums.size(); i++){
+            mp[nums[i]].push_back(i);
+        }
+        sort(nums.begin(), nums.end());
+        
+        int i = 0, j = nums.size()-1;
+        while(i < j){
+            int sum = nums[i]+nums[j];
+            if(target == sum){
+                if(nums[i] == nums[j]){
+                    ans.push_back(mp[nums[i]][0]);
+                    ans.push_back(mp[nums[j]][1]);
+                }
+                else{
+                    ans.push_back(mp[nums[i]][0]);
+                    ans.push_back(mp[nums[j]][0]);
+                }
+                break;
+            }
+            else if(target < sum){
+                j--;
+            }
+            else{
+                i++;
+            }
+        }
+     
+        return ans;
+    }
+};
