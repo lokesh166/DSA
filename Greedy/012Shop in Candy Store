@@ -1,0 +1,33 @@
+vector<int> candyStore(int candies[], int N, int K)
+    {
+        sort(candies, candies+N);
+        
+        int mini = 0;
+        int freeCandies = N-1;
+        int buyCandies = 0;
+        
+        while(buyCandies <= freeCandies)
+        {
+            mini = mini  + candies[buyCandies];
+            buyCandies++;
+            freeCandies = freeCandies - K;
+        }
+        
+        int maxi = 0;
+        freeCandies = 0;
+        buyCandies = N-1;
+        
+        while(freeCandies <= buyCandies)
+        {
+            maxi = maxi + candies[buyCandies];
+            buyCandies--;
+            freeCandies = freeCandies + K;
+        }
+        
+        vector<int> ans;
+        ans.push_back(mini);
+        ans.push_back(maxi);
+        
+        return ans;
+    }
+};
