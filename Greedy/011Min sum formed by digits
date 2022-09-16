@@ -1,0 +1,26 @@
+long long int minSum(int arr[], int n)
+    {
+        if(n == 1) return arr[0];
+        
+        sort(arr, arr+n);
+        
+        long long int minfirst = 0;
+        long long int minsecond = 0;
+        
+        
+        for(int i=0; i<n; i++)
+        {
+            if(i%2 == 0) 
+            {
+                long long int temp = minfirst * 10;
+                minfirst = temp + arr[i];
+            }else
+            {
+                long long int temp = minsecond * 10;
+                minsecond = temp + arr[i];
+            }
+        }
+        
+        return {minfirst + minsecond};
+        
+    }
