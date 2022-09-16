@@ -1,0 +1,41 @@
+int minimumCostOfBreaking(vector<int> x, vector<int> y, int M, int N){
+        sort(x.begin(), x.end(), greater<int>());
+        sort(y.begin(), y.end(), greater<int>());
+        
+        int m = M-1;  // boxes are N but cutting edges is N-1
+        int n = N-1; 
+        
+        int horizontal_count = 1;
+        int vertical_count = 1;
+        
+        int ans = 0;
+        int i = 0, j = 0;
+        
+        while(i<m && j<n)
+        {
+            if(x[i] >y[j])
+            {
+                ans += x[i]*vertical_count;
+                horizontal_count++;
+                i++;
+            }else
+            {
+                ans += y[j]*horizontal_count;
+                vertical_count++;
+                j++;
+            }
+        }
+        
+        while(i<m)
+        {
+            ans += x[i]*vertical_count;
+            i++;
+        }
+        
+        while(j<n)
+        {
+            ans += y[j]*horizontal_count;
+            j++;
+        }
+        return ans;
+    }
